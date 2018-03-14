@@ -24,9 +24,9 @@ public class KineticEnergy {
 		//If the radius and velocity were not command-line arguments, get them from user now
 		if (args.length == 2 ) {
 			ballRadius = Double.parseDouble(args[0]);
-			System.out.printf("Ball radius loaded as: %f\n", ballRadius);
+			System.out.printf("Ball radius loaded as: %.2f\n", ballRadius);
 			ballLinearVelocity = Double.parseDouble(args[1]);
-			System.out.printf("Ball linear velocity loaded as: %f\n", ballLinearVelocity);
+			System.out.printf("Ball linear velocity loaded as: %.2f\n", ballLinearVelocity);
 		} else {
 			System.out.print("Enter ball radius: ");
 			ballRadius = input.nextDouble();
@@ -34,25 +34,32 @@ public class KineticEnergy {
 			ballLinearVelocity = input.nextDouble();
 		}
 		
-		//TODO calculates wrong velocity
+		//TODO calculates wrong velocity. Manual calci
 		
 		//Calculate angular velocity
 		angularVelocity = ballLinearVelocity / ballRadius;
 		
+		System.out.println(angularVelocity);
+		
 		//Calculate moment of inertia
+		//TODO given 1, 1 as v and r, produces 24.492 instead of 32.656 Possibly has something to do with a different order of operations
 		mVariable = (4/3) * PI * Math.pow(ballRadius, 3) * IRON_DENSITY;
+		System.out.println(mVariable);
 		momentOfInertia = 0.4 * mVariable * Math.pow(ballRadius, 2);
+		System.out.println(momentOfInertia);
 		
 		//Calculate angular kinetic energy
 		angularKineticEnergy = 0.5 * momentOfInertia * Math.pow(angularVelocity, 2);
+		System.out.println(angularKineticEnergy);
 		
 		//Calculate linear kinetic energy
 		linearKineticEnergy = 0.5 * mVariable * Math.pow(ballLinearVelocity, 2);
+		System.out.println(linearKineticEnergy);
 		
 		//Calculate total kinetic energy
-		totalKineticEnergy = angularKineticEnergy + linearKineticEnergy;
+		totalKineticEnergy = linearKineticEnergy + angularKineticEnergy	;
 		
-		System.out.printf("The total kinetic energy is: %f", totalKineticEnergy);
+		System.out.printf("The total kinetic energy is: %.2f\n", totalKineticEnergy);
 		
 	}
 	

@@ -11,24 +11,48 @@ import java.util.Scanner;
 public class KineticEnergy {
 	
 	public static void main(String[] args) {
-		//vars
+		//Variable declaration
 		double ballRadius, ballLinearVelocity;
+		double angularVelocity, momentOfInertia, mVariable; //I have no idea what m in the assignment is supposed to represent
+		double totalKineticEnergy, linearKineticEnergy, angularKineticEnergy;
+		
+		final double IRON_DENSITY = 7.8;
+		final double PI = 3.14;
 		
 		Scanner input = new Scanner(System.in);
 		
 		//If the radius and velocity were not command-line arguments, get them from user now
-		/*if (args.length == 2 ) {
+		if (args.length == 2 ) {
 			ballRadius = Double.parseDouble(args[0]);
+			System.out.printf("Ball radius loaded as: %f\n", ballRadius);
 			ballLinearVelocity = Double.parseDouble(args[1]);
+			System.out.printf("Ball linear velocity loaded as: %f\n", ballLinearVelocity);
 		} else {
-			ballRadius = 0;
-		}*/
+			System.out.print("Enter ball radius: ");
+			ballRadius = input.nextDouble();
+			System.out.print("Enter ball linear velocity: ");
+			ballLinearVelocity = input.nextDouble();
+		}
 		
-		ballRadius = (args.length == 2) ? Double.parseDouble(args[0]) : input.nextDouble();
-		ballLinearVelocity = (args.length == 2) ? Double.parseDouble(args[1]) : input.nextDouble();
+		//TODO calculates wrong velocity
 		
-		System.out.printf("Radius: %f\n", ballRadius);
-		System.out.printf("Velocity: %f\n", ballLinearVelocity);
+		//Calculate angular velocity
+		angularVelocity = ballLinearVelocity / ballRadius;
+		
+		//Calculate moment of inertia
+		mVariable = (4/3) * PI * Math.pow(ballRadius, 3) * IRON_DENSITY;
+		momentOfInertia = 0.4 * mVariable * Math.pow(ballRadius, 2);
+		
+		//Calculate angular kinetic energy
+		angularKineticEnergy = 0.5 * momentOfInertia * Math.pow(angularVelocity, 2);
+		
+		//Calculate linear kinetic energy
+		linearKineticEnergy = 0.5 * mVariable * Math.pow(ballLinearVelocity, 2);
+		
+		//Calculate total kinetic energy
+		totalKineticEnergy = angularKineticEnergy + linearKineticEnergy;
+		
+		System.out.printf("The total kinetic energy is: %f", totalKineticEnergy);
 		
 	}
 	

@@ -13,7 +13,7 @@ public class KineticEnergy {
 	public static void main(String[] args) {
 		//Variable declaration
 		double ballRadius, ballLinearVelocity;
-		double angularVelocity, momentOfInertia, ballMass; //I have no idea what m in the assignment is supposed to represent
+		double angularVelocity, momentOfInertia, ballMass;
 		double totalKineticEnergy, linearKineticEnergy, angularKineticEnergy;
 
 		final double IRON_DENSITY = 7.8;
